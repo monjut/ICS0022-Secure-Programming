@@ -2,14 +2,14 @@
 
 ## 1. Assumptions and scope
 
-Local, offline, single-user CLI application written in Python 3.11+. The single user's secrets live in one encrypted vault file. "User management" therefore means the lifecycle of the master credential (create, unlock, change, lock) and the unlocked session, not multiple accounts.
+Complete local, offline, and single-user CLI application written in Python 3.11+. The user's sensitive information is stored in a single encrypted vault file. "User management" therefore means the lifecycle of the user's master credential (create, unlock, change, lock) and the unlocked session, instead of multiple accounts.
 
 **Adversaries considered**
-- A1: Someone who obtains a copy of the vault file (stolen laptop, leaked backup, cloud-synced folder).
-- A2: A local, unprivileged attacker or process on the same machine while the user is logged in.
-- A3: A shoulder-surfer or someone with brief physical access to an unlocked terminal.
+- A1: One who obtains a copy of the vault file (stolen laptop, leaked backup, etc.).
+- A2: A local and unprivileged attacker/process on the same machine while the user is logged in.
+- A3: A shoulder-surfer/one with temporary physical access to an unlocked terminal.
 
-**Out of scope:** root/kernel malware, keyloggers, cold-boot and hardware attacks, coercion. These are stated as residual risks in section 4.
+**Out of scope:** root/kernel malware, keyloggers, cold-boot and hardware attacks, etc. These are stated as other residual risks in section 4.
 
 **Assets:** (1) the stored credentials, (2) the master password, (3) vault integrity (no undetected modification).
 
@@ -40,7 +40,7 @@ flowchart LR
 
 **Data flow: save.** After a mutation, `users` serialises entries, `crypto` encrypts them with a fresh nonce, and `storage` writes the file atomically.
 
-Trust boundary: everything to the left of `storage` handles secrets; the file and everything beyond it is untrusted.
+Trust boundary: everything to the left of `storage` handles secrets; everything beyond it is considered untrusted.
 
 ## 3. Design decisions: vault format and cryptography
 
