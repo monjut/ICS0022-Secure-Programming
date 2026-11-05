@@ -13,7 +13,7 @@ encrypted vault file. Design: see Checkpoint 1 (Argon2id + AES-256-GCM, two-leve
 ## Build and run (clean machine)
 
 ```bash
-git clone <repo-url> pwmanager && cd pwmanager
+git clone https://github.com/monjut/ICS0022-Secure-Programming pwmanager && cd pwmanager
 
 python3 -m venv .venv
 source .venv/bin/activate            # Windows PowerShell: .venv\Scripts\Activate.ps1
