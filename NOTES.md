@@ -1,5 +1,8 @@
 # Checkpoint 2 progress note (Week 9)
 
+Created by: Monju Tanakajima
+Secure Programming ICS0022
+
 ## Done
 - **Vault storage:** single JSON file, version 1, exactly as specified in Checkpoint 1 section 3.3. Strict schema validation, size limit, atomic write (temp file, fsync, `.bak`, rename), mode 0600 in a 0700 directory.
 - **Encryption at rest:** random 32-byte vault key encrypts the whole body with AES-256-GCM (fresh nonce per save). The vault key is wrapped under a key derived from the master password with Argon2id (64 MiB, t=3, p=1). The header is bound as AAD to both the wrapped key and the body.
